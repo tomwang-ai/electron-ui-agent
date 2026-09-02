@@ -19,16 +19,19 @@ The runner reads deterministic YAML, JSON, or Markdown test cases and executes t
 ## Install
 
 ```bash
-npm install
+npm ci
 npm run build
+npm run check
 ```
 
 Node.js 20 or newer is required.
 
+The package is not yet published to the npm registry. These commands are for a source checkout.
+
 ## Run a case
 
 ```bash
-electron-ui-agent examples/demo-case.md --output artifacts
+node dist/cli.js <CASE_FILE_OR_DIRECTORY> --output <PRIVATE_ARTIFACT_DIRECTORY>
 ```
 
 Application paths and secrets can be supplied through environment variables:
@@ -44,7 +47,7 @@ Supported actions are `click`, `fill`, `press`, `wait`, `assertVisible`, `assert
 ## MCP server
 
 ```bash
-electron-ui-agent-mcp --workspace ./private-test-project
+node <ABSOLUTE_PATH_TO_AGENT>/dist/mcp.js --workspace <ABSOLUTE_PATH_TO_PRIVATE_TEST_WORKSPACE>
 ```
 
 The MCP server exposes `run_case`. Paths are restricted to the configured workspace, and the response contains only a compact status summary and artifact paths.
@@ -61,9 +64,19 @@ The dependency direction must never be reversed. See [CONTRIBUTING.md](CONTRIBUT
 
 ## Documentation
 
+- [Documentation index](docs/README.md)
+- [Getting started](docs/GETTING_STARTED.md)
+- [CLI reference](docs/CLI.md)
+- [MCP integration](docs/MCP.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Test case format](docs/CASE_FORMAT.md)
 - [Privacy and business isolation](docs/PRIVACY.md)
+- [Artifacts and results](docs/ARTIFACTS.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)
+- [Compatibility](docs/COMPATIBILITY.md)
+- [Security model](docs/SECURITY_MODEL.md)
+- [Development](docs/DEVELOPMENT.md)
+- [Release](docs/RELEASE.md)
 - [Roadmap](docs/ROADMAP.md)
 
 ## Verify
@@ -97,16 +110,19 @@ Electron UI Agent 是一个厂商无关、低 Token 消耗的 Electron UI 测试
 ### 安装
 
 ```bash
-npm install
+npm ci
 npm run build
+npm run check
 ```
 
 要求 Node.js 20 或更高版本。
 
+项目尚未发布到 npm 公共仓库；以上命令用于源码检出。
+
 ### 执行用例
 
 ```bash
-electron-ui-agent examples/demo-case.md --output artifacts
+node dist/cli.js <CASE_FILE_OR_DIRECTORY> --output <PRIVATE_ARTIFACT_DIRECTORY>
 ```
 
 应用路径和敏感参数可通过环境变量提供：
@@ -122,7 +138,7 @@ app:
 ### MCP 服务
 
 ```bash
-electron-ui-agent-mcp --workspace ./private-test-project
+node <ABSOLUTE_PATH_TO_AGENT>/dist/mcp.js --workspace <ABSOLUTE_PATH_TO_PRIVATE_TEST_WORKSPACE>
 ```
 
 MCP 服务提供 `run_case` 工具。所有路径都被限制在配置的工作区内，返回内容只包含精简状态和证据文件路径。
@@ -139,9 +155,19 @@ MCP 服务提供 `run_case` 工具。所有路径都被限制在配置的工作�
 
 ### 文档
 
+- [文档中心](docs/README.md)
+- [快速入门](docs/GETTING_STARTED.md)
+- [CLI参考](docs/CLI.md)
+- [MCP接入](docs/MCP.md)
 - [架构说明](docs/ARCHITECTURE.md)
 - [测试用例格式](docs/CASE_FORMAT.md)
 - [隐私与业务隔离](docs/PRIVACY.md)
+- [证据与结果](docs/ARTIFACTS.md)
+- [故障排查](docs/TROUBLESHOOTING.md)
+- [兼容性](docs/COMPATIBILITY.md)
+- [安全模型](docs/SECURITY_MODEL.md)
+- [开发指南](docs/DEVELOPMENT.md)
+- [发布指南](docs/RELEASE.md)
 - [路线图](docs/ROADMAP.md)
 
 ### 验证
