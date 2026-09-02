@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Generic Test App</title>
+  </head>
+  <body>
+    <main>
+      <h1>Demo</h1>
+      <label>Display name <input aria-label="Display name" /></label>
+      <button type="button">Continue</button>
+      <p id="result" hidden>Completed</p>
+    </main>
+    <script>
+      document.querySelector('button').addEventListener('click', () => {
+        document.querySelector('#result').hidden = false
+      })
+    </script>
+  </body>
+</html>

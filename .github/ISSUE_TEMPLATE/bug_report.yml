@@ -1,0 +1,28 @@
+name: Bug report
+description: Report a reproducible problem using synthetic data only.
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: Do not include real project, business, organization, personal, credential, address, screenshot, log, or test data.
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed behavior
+      description: Use a generic or synthetic example.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Provide the smallest synthetic reproduction.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Repository hygiene
+      options:
+        - label: I confirm this report contains synthetic, non-identifying information only.
+          required: true

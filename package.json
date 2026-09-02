@@ -1,0 +1,47 @@
+{
+  "name": "electron-ui-agent",
+  "version": "0.1.0",
+  "description": "Vendor-neutral, token-efficient Electron UI test runner for humans, CI, and AI clients.",
+  "type": "module",
+  "bin": {
+    "electron-ui-agent": "dist/cli.js",
+    "electron-ui-agent-mcp": "dist/mcp.js"
+  },
+  "files": [
+    "dist",
+    "!dist/*.test.js",
+    "!dist/*.test.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/*.test.js",
+    "test:e2e": "npm run build && node scripts/e2e.mjs",
+    "test:mcp": "npm run build && node scripts/mcp-smoke.mjs",
+    "check:hygiene": "node scripts/check-repository-hygiene.mjs",
+    "check": "npm run check:hygiene && npm test && npm run test:mcp && npm run test:e2e"
+  },
+  "keywords": [
+    "electron",
+    "playwright",
+    "testing",
+    "mcp",
+    "automation"
+  ],
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "playwright": "^1.62.1",
+    "yaml": "^2.9.0",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "electron": "^44.1.1",
+    "typescript": "^7.0.2"
+  }
+}
