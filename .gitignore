@@ -9,3 +9,4 @@ artifacts/
 !.env.example
 .DS_Store
 Thumbs.db
+security.local.json

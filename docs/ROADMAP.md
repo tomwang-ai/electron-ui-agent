@@ -14,6 +14,7 @@ The project develops in small, independently useful stages.
 - CLI and compact MCP integration
 - Local screenshots, traces, console logs, and JSON results
 - Repository privacy and business-isolation merge gate
+- Optional local security adapter CLI/MCP with explicit coverage status
 
 ## Next
 
@@ -45,6 +46,7 @@ Model providers, business workflows, hosted telemetry, and a management dashboar
 - CLI 和精简 MCP 集成
 - 本地截图、Trace、控制台日志和 JSON 结果
 - 仓库隐私与业务隔离合并门禁
+- 可选本地安全适配器 CLI/MCP，明确区分覆盖状态
 
 ### 下一阶段
 

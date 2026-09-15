@@ -13,6 +13,8 @@ This documentation is bilingual. Each page contains English first and Chinese se
 | [MCP Integration](MCP.md) | MCP接入 | Generic and AI-client MCP setup / 通用及AI客户端MCP配置 |
 | [Test Case Format](CASE_FORMAT.md) | 用例格式 | Schema, targets, actions and validation / Schema、定位、动作和校验 |
 | [Artifacts and Results](ARTIFACTS.md) | 证据与结果 | JSON, screenshots, traces and logs / JSON、截图、Trace和日志 |
+| [Local Security Scanning](SECURITY_SCANNING.md) | 本地安全扫描 | Optional local adapters, modes and coverage / 可选本地适配器、模式与覆盖 |
+| [Changelog](../CHANGELOG.md) | 更新记录 | Changes, verification and compatibility for every commit / 每次提交的变更、验证与兼容性 |
 | [Troubleshooting](TROUBLESHOOTING.md) | 故障排查 | Installation, launch, locator, MCP and CI problems / 安装、启动、定位、MCP和CI问题 |
 
 ## Design and governance / 设计与治理
@@ -36,6 +38,7 @@ This documentation is bilingual. Each page contains English first and Chinese se
 | CLI file and recursive-directory execution / CLI文件与递归目录执行 | Available / 已支持 |
 | Local screenshots, trace, console and JSON result / 本地截图、Trace、控制台和JSON结果 | Available / 已支持 |
 | STDIO MCP `run_case` | Available / 已支持 |
+| Optional security CLI and MCP adapters / 可选安全扫描CLI和MCP适配 | Available; operator supplies scanners / 已支持；扫描器由操作者提供 |
 | First Electron window / 首个Electron窗口 | Available / 已支持 |
 | Multi-window selection / 多窗口选择 | Planned / 规划中 |
 | Visual locator recovery / 视觉定位恢复 | Planned, outside the current core / 已规划，不在当前核心中 |

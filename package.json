@@ -5,7 +5,8 @@
   "type": "module",
   "bin": {
     "electron-ui-agent": "dist/cli.js",
-    "electron-ui-agent-mcp": "dist/mcp.js"
+    "electron-ui-agent-mcp": "dist/mcp.js",
+    "electron-ui-agent-security": "dist/security-cli.js"
   },
   "files": [
     "dist",

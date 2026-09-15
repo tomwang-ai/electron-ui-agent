@@ -50,6 +50,7 @@ Use Node.js 24 to match CI. Do not switch package managers or create another loc
 5. Run `npm run check`.
 6. Inspect `git status --short` and `git diff --check`.
 7. Confirm no artifacts, private paths or identifying data are staged.
+8. Add the current commit's changes, verification and compatibility impact to `CHANGELOG.md`, including documentation-only commits. Preserve earlier entries.
 
 ### Testing strategy
 
@@ -152,6 +153,7 @@ npm run build
 5. 运行`npm run check`。
 6. 检查`git status --short`和`git diff --check`。
 7. 确认未暂存证据、私有路径或可识别数据。
+8. 在 `CHANGELOG.md` 新增本次提交的变更内容、验证情况及兼容性影响；仅文档提交也适用，保留已有记录。
 
 ### 测试策略
 

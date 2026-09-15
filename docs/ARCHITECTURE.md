@@ -6,6 +6,8 @@
 
 Electron UI Agent has one job: execute deterministic UI cases against a locally trusted Electron application.
 
+An optional, separate security adapter layer dispatches trusted local scanning workflows through its own CLI or an opt-in MCP tool. It does not add actions to the UI runner or own the application's lifecycle. See [Local Security Scanning](SECURITY_SCANNING.md).
+
 ```text
 human, CI, or AI client
           |
@@ -41,6 +43,7 @@ Keep the core action set small. Add an action only when it is broadly useful acr
 | `runner.ts` | Run ID, output directory, Electron lifecycle, first window, steps, trace and result | CLI parsing or MCP path policy |
 | `cli.ts` | User arguments, file/directory discovery, sequential execution, compact stdout and exit status | MCP protocol |
 | `mcp.ts` | STDIO server, Zod tool input, workspace confinement and compact tool response | Directory discovery or artifact reading |
+| `security-config.ts`, `security-result.ts`, `security.ts`, `security-cli.ts` | Trusted adapter configuration, fixed dispatch, scan boundaries, assessment and CLI | Scanner implementation, product login or remediation |
 | hygiene script | Generic text-pattern scanning and optional private deny-list | Semantic proof that content is safe |
 
 ## Execution sequence
@@ -89,6 +92,8 @@ Each `runCase` call owns one Electron application, first page and UUID directory
 
 Electron UI Agent 只负责一件事：针对本地可信的 Electron 应用执行确定性 UI 用例。
 
+独立的可选安全适配层通过专用 CLI 或按需启用的 MCP 工具调度可信本地扫描流程，不增加 UI 动作，也不管理应用生命周期。详见[本地安全扫描](SECURITY_SCANNING.md)。
+
 ```text
 人工、CI 或 AI 客户端
           |
@@ -124,6 +129,7 @@ MCP 服务只接受配置工作区内的路径，并且不暴露任意 JavaScrip
 | `runner.ts` | Run ID、输出目录、Electron生命周期、首窗、步骤、Trace和结果 | CLI解析或MCP路径策略 |
 | `cli.ts` | 参数、文件发现、顺序执行、精简stdout和退出状态 | MCP协议 |
 | `mcp.ts` | STDIO服务、Zod输入、工作区限制和精简响应 | 目录发现或读取证据 |
+| `security-config.ts`、`security-result.ts`、`security.ts`、`security-cli.ts` | 可信适配器配置、固定调度、扫描边界、评估及CLI | 扫描器实现、产品登录或修复 |
 | 卫生脚本 | 通用模式和可选私有禁词扫描 | 语义上证明内容安全 |
 
 ### 执行顺序

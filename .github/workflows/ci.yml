@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: ['**']
   pull_request:
 
 permissions:
@@ -27,5 +27,6 @@ jobs:
         env:
           REPOSITORY_HYGIENE_DENYLIST: ${{ secrets.REPOSITORY_HYGIENE_DENYLIST }}
       - run: npm test
+      - run: npm run test:mcp
       - run: npm run test:e2e
         if: runner.os == 'Windows'

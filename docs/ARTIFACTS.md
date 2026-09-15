@@ -4,6 +4,8 @@
 
 ## English
 
+This page describes UI results. Optional security runs use a separate UUID directory, `conclusion`, `checks`, `report.md` and private adapter evidence; see [Local Security Scanning](SECURITY_SCANNING.md).
+
 ### Directory layout
 
 Each case receives a random UUID `runId` and its own directory under the selected output root:
@@ -113,6 +115,8 @@ Never commit real artifacts to this public repository. Both `artifacts/` and `.e
 This order avoids loading large evidence unless necessary.
 
 ## 中文
+
+本页描述 UI 结果。可选安全扫描使用独立 UUID 目录、`conclusion`、`checks`、`report.md` 和私有适配器证据，详见[本地安全扫描](SECURITY_SCANNING.md)。
 
 ### 目录结构
 

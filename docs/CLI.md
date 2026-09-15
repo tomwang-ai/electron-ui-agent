@@ -4,6 +4,8 @@
 
 ## English
 
+The UI CLI below is unchanged. The separate `electron-ui-agent-security` command is documented in [Local Security Scanning](SECURITY_SCANNING.md), including configuration, modes and exit codes.
+
 ### Synopsis
 
 ```text
@@ -129,6 +131,8 @@ node <AGENT_DIR>/dist/cli.js cases --output test-artifacts
 Upload output only as a private CI artifact. Never publish real traces or screenshots here.
 
 ## 中文
+
+以下 UI CLI 保持不变。独立命令 `electron-ui-agent-security` 的配置、模式和退出码见[本地安全扫描](SECURITY_SCANNING.md)。
 
 ### 命令格式
 

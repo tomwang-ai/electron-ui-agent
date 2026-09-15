@@ -10,7 +10,7 @@ The MCP server lets AI clients invoke saved deterministic cases. It is not an au
 
 - Transport: STDIO.
 - Entry: `dist/mcp.js`.
-- Current tool count: one.
+- Default tool count: one. `--security-config <PRIVATE_CONFIG>` adds `run_security_scan`; see [Local Security Scanning](SECURITY_SCANNING.md) for its contract and trusted-adapter boundary.
 
 ```bash
 npm ci
@@ -164,7 +164,7 @@ Run cases/smoke.yaml. On failure inspect result.json first, then only the failur
 
 ### Current limitations
 
-- Only `run_case`.
+- `run_case` by default; opt-in `run_security_scan` requires operator-supplied adapters.
 - One file per call.
 - No artifact-reading tool; local paths are returned.
 - No asynchronous queue or cancellation.
@@ -180,7 +180,7 @@ MCP 服务让 AI 客户端调用已保存的确定性用例。它不是自主视
 
 - 传输：STDIO。
 - 入口：`dist/mcp.js`。
-- 当前工具数：一个。
+- 默认工具数：一个。`--security-config <PRIVATE_CONFIG>` 可增加 `run_security_scan`；协议与可信适配器边界见[本地安全扫描](SECURITY_SCANNING.md)。
 
 ```bash
 npm ci
@@ -334,7 +334,7 @@ default_tools_approval_mode = "prompt"
 
 ### 当前限制
 
-- 只有 `run_case`。
+- 默认提供 `run_case`；可选 `run_security_scan` 需要操作者提供本地适配器。
 - 每次调用一个文件。
 - 没有证据读取工具，只返回本地路径。
 - 没有异步队列或取消。

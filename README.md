@@ -149,6 +149,8 @@ The MCP server exposes `run_case`. Paths are restricted to the configured worksp
 
 ## Keep business data separate
 
+Optional local security adapters are available through `electron-ui-agent-security` and the opt-in MCP tool `run_security_scan`. See [Local Security Scanning](docs/SECURITY_SCANNING.md) for configuration, four scan modes and coverage limits. Scanners and private workflows are supplied locally; they are not bundled.
+
 This repository must contain synthetic, non-identifying content only. Store application configuration, selectors, credentials, cases, screenshots, traces, and reports in a separate private repository or local workspace:
 
 ```text
@@ -170,6 +172,8 @@ The dependency direction must never be reversed. See [CONTRIBUTING.md](CONTRIBUT
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
 - [Compatibility](docs/COMPATIBILITY.md)
 - [Security model](docs/SECURITY_MODEL.md)
+- [Local security scanning](docs/SECURITY_SCANNING.md)
+- [Changelog](CHANGELOG.md)
 - [Development](docs/DEVELOPMENT.md)
 - [Release](docs/RELEASE.md)
 - [Roadmap](docs/ROADMAP.md)
@@ -240,6 +244,8 @@ MCP 服务提供 `run_case` 工具。所有路径都被限制在配置的工作�
 
 ### 业务隔离
 
+可通过 `electron-ui-agent-security` 和按需启用的 MCP 工具 `run_security_scan` 调用本地安全适配器。配置、四种模式及覆盖边界见[本地安全扫描](docs/SECURITY_SCANNING.md)。扫描器和私有工作流由本地提供，不随包分发。
+
 本仓库只能包含虚构且不可识别的信息。真实应用配置、选择器、凭据、用例、截图、Trace 和报告必须放在独立私有仓库或本地工作区：
 
 ```text
@@ -261,6 +267,8 @@ MCP 服务提供 `run_case` 工具。所有路径都被限制在配置的工作�
 - [故障排查](docs/TROUBLESHOOTING.md)
 - [兼容性](docs/COMPATIBILITY.md)
 - [安全模型](docs/SECURITY_MODEL.md)
+- [本地安全扫描](docs/SECURITY_SCANNING.md)
+- [更新记录](CHANGELOG.md)
 - [开发指南](docs/DEVELOPMENT.md)
 - [发布指南](docs/RELEASE.md)
 - [路线图](docs/ROADMAP.md)

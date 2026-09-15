@@ -18,6 +18,8 @@ Provide deterministic local Electron UI execution while minimizing exposed files
 
 ### Trust boundaries
 
+The opt-in security bridge also executes trusted operator-configured Python/PowerShell adapters. Only process startup can select scripts/runtimes; MCP requests contain typed scan inputs only. Target/output paths are canonicalized inside the private workspace, child environments are limited and raw adapter output is not returned. Adapters are not sandboxed: their operator must enforce local-only scanning, redaction, closed/static and logged-in/dynamic preconditions, and no remediation. The bridge does not prove these behaviors from a script path. See [Local Security Scanning](SECURITY_SCANNING.md).
+
 ```text
 AI client or human
        |
@@ -120,6 +122,8 @@ Use the repository's private security advisory channel when a report could expos
 - 公开仓库历史和发布包完整性。
 
 ### 信任边界
+
+可选安全桥接层还会执行操作者配置的可信 Python/PowerShell 适配器。脚本和运行时只能由启动配置选择，MCP 请求只传类型化扫描输入。目标及输出按真实路径限制在私有工作区内，子进程环境受限，原始标准输出不返回。适配器不是沙箱；操作者必须落实本地扫描、脱敏、静态关闭/动态已登录前置条件和禁止修复，桥接层无法仅凭脚本路径证明这些行为。详见[本地安全扫描](SECURITY_SCANNING.md)。
 
 ```text
 AI客户端或人工
