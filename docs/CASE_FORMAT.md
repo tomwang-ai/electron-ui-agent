@@ -44,7 +44,8 @@ Semantic roles and stable test IDs are less brittle than CSS selectors.
 | `wait` | `milliseconds` or `target` | Wait for time or visibility. |
 | `assertVisible` | `target` | Require a visible element. |
 | `assertText` | `target`, `value` | Require visible matching text. |
-| `assertValue` | `target`, `value` | Require an exact input value. |
+| `assertValue` | `target`, `value` | Wait for an exact input value, including an empty string. |
+| `assertCount` | `target`, `count` | Wait for an exact non-negative integer number of matched elements. |
 | `screenshot` | optional `name` | Save a screenshot. |
 
 Strings support `${ENV:VARIABLE_NAME}`. Missing variables fail before the affected action can continue. Cases cannot execute arbitrary JavaScript.
@@ -108,7 +109,7 @@ Resolves `target` and performs a Playwright click. Normal Playwright actionabili
 
 #### `fill`
 
-Replaces the current editable value. `value` supports environment expansion.
+Replaces the current editable value. `value` supports environment expansion and may be empty to clear the input.
 
 ```yaml
 - action: fill
@@ -150,7 +151,20 @@ Resolves the target, filters it with Playwright `hasText`, and waits for the fil
 
 #### `assertValue`
 
-Reads `inputValue()` and requires exact string equality. The expected `value` supports environment expansion.
+Polls `inputValue()` for exact string equality within `actionTimeoutMs`. The expected `value` supports environment expansion and may be an empty string; missing and non-string values are rejected. A matching sample does not prove durable persistence or continued stability.
+
+#### `assertCount`
+
+Polls the number of elements matching `target` within `actionTimeoutMs`. `count` must be a non-negative safe integer; zero tests absence. Count includes hidden matching elements, so scope the locator to visible items when that is the claim. Wait for the relevant page or result readiness before testing zero; a not-yet-loaded list may also contain zero elements. This samples equality and does not prove an item remains absent afterward.
+
+```yaml
+- action: assertValue
+  target: { testId: search-input }
+  value: ""
+- action: assertCount
+  target: { css: '[data-testid="result-row"][data-category="excluded"]:visible' }
+  count: 0
+```
 
 #### `screenshot`
 
@@ -229,7 +243,8 @@ steps:
 | `wait` | `milliseconds` 或 `target` | 等待指定时间或等待元素可见。 |
 | `assertVisible` | `target` | 要求元素可见。 |
 | `assertText` | `target`、`value` | 要求匹配文本可见。 |
-| `assertValue` | `target`、`value` | 要求输入值完全一致。 |
+| `assertValue` | `target`、`value` | 等待输入值完全一致，支持空字符串。 |
+| `assertCount` | `target`、`count` | 等待匹配元素数量等于指定非负整数。 |
 | `screenshot` | 可选 `name` | 保存截图。 |
 
 字符串支持 `${ENV:VARIABLE_NAME}`。缺少环境变量时，相关动作执行前会失败。用例不能执行任意 JavaScript。
@@ -288,7 +303,7 @@ target: { css: "button[data-action='continue']" }
 
 #### `fill`
 
-替换可编辑元素当前值，`value` 支持环境变量展开。
+替换可编辑元素当前值，`value` 支持环境变量展开，也可使用空字符串清空输入。
 
 #### `press`
 
@@ -308,7 +323,20 @@ target: { css: "button[data-action='continue']" }
 
 #### `assertValue`
 
-读取 `inputValue()` 并要求字符串完全相等。
+在 `actionTimeoutMs` 内轮询 `inputValue()`，要求字符串完全相等。`value` 支持环境变量展开和空字符串，缺少值或非字符串值会被拒绝。某次采样相等不证明持久化或随后持续稳定。
+
+#### `assertCount`
+
+在 `actionTimeoutMs` 内轮询匹配 `target` 的元素数。`count` 必须是非负安全整数，零用于检查不存在。数量包含匹配的隐藏元素；要验证可见列表时，定位器应限定可见项。断言为零前先等待相关页面或结果就绪，否则尚未加载也可能得到零。此断言只采样数量相等，不证明对象随后持续不存在。
+
+```yaml
+- action: assertValue
+  target: { testId: search-input }
+  value: ""
+- action: assertCount
+  target: { css: '[data-testid="result-row"][data-category="excluded"]:visible' }
+  count: 0
+```
 
 #### `screenshot`
 

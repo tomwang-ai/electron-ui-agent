@@ -38,6 +38,7 @@ Use Node.js 24 to match CI. Do not switch package managers or create another loc
 | `npm test` | Build and run Node.js unit tests. |
 | `npm run test:mcp` | Build, start the MCP server through the official SDK client and verify `run_case` discovery. |
 | `npm run test:e2e` | Build and run real Electron success and failure-evidence cases. |
+| `npm run test:deterministic` | Run three synthetic workflows and verify that each detects its injected fault, serially without model integration. |
 | `npm run check:hygiene` | Scan repository text for identifying and sensitive patterns. |
 | `npm run check` | Run the full local quality gate. |
 
@@ -141,6 +142,7 @@ npm run build
 | `npm test` | 构建并运行Node.js单元测试。 |
 | `npm run test:mcp` | 通过官方SDK客户端启动MCP并验证`run_case`发现。 |
 | `npm run test:e2e` | 运行真实Electron成功和失败证据用例。 |
+| `npm run test:deterministic` | 串行运行三个虚构流程，并验证各自能发现注入故障，不接入模型。 |
 | `npm run check:hygiene` | 扫描可识别和敏感模式。 |
 | `npm run check` | 运行完整本地门禁。 |
 

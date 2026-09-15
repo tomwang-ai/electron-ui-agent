@@ -23,6 +23,10 @@ Every GitHub submission must contain public, generic content only. No informatio
 - Do not commit `artifacts/`, `.eui-agent-runs/`, environment files, or generated build output.
 - Every commit must update `CHANGELOG.md` in the same commit with a new entry describing the change, verification and compatibility impact. Include documentation-only changes; preserve earlier entries and use synthetic, non-identifying content only.
 
+## UI testing knowledge
+
+Before UI testing, use the [knowledge index](docs/knowledge/README.md) to recall only relevant methods. At closeout or after a confirmed correction, follow UIK-016 to review and maintain reusable knowledge within the authorized scope. Keep detailed methods in that single source; keep real evidence in the private workspace. These are caller instructions, not automatic runner behavior.
+
 ## Merge gate
 
 A change may merge only when repository-hygiene scanning, unit tests, MCP discovery, Electron end-to-end tests, and human privacy review pass. A failing or unknown gate blocks merge.
@@ -51,6 +55,10 @@ A change may merge only when repository-hygiene scanning, unit tests, MCP discov
 - MCP 返回内容应保持精简；大体积截图、Trace 和日志只作为证据文件保存。
 - 禁止提交 `artifacts/`、`.eui-agent-runs/`、环境文件或生成的构建产物。
 - 每次提交必须在同一提交中更新 `CHANGELOG.md`，新增本次变更内容、验证情况与兼容性影响；仅文档变更也适用。保留已有记录，只使用虚构且不可识别的信息。目的：让每次更新都可追溯，便于使用者和审核者了解变化。
+
+### UI 测试知识
+
+UI 测试前通过[经验索引](docs/knowledge/README.md)只召回相关方法。收尾或收到已确认的纠正后，按 UIK-016 在授权范围内复核并维护可复用知识。详细方法保持唯一来源，真实证据留在私有工作区。这些是调用方指引，不是执行器自动行为。
 
 ### 合并门禁
 

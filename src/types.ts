@@ -14,6 +14,7 @@ export type Step =
   | { action: 'assertVisible'; target: Target }
   | { action: 'assertText'; target: Target; value: string }
   | { action: 'assertValue'; target: Target; value: string }
+  | { action: 'assertCount'; target: Target; count: number }
   | { action: 'screenshot'; name?: string }
 
 export type TestCase = {

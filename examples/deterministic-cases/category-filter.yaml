@@ -1,0 +1,30 @@
+name: category filter excludes pinned entries outside Beta
+app:
+  executablePath: "${ENV:ELECTRON_EXECUTABLE}"
+  args:
+    - "${ENV:DETERMINISTIC_APP_ENTRY}"
+  timeoutMs: 5000
+  actionTimeoutMs: 1000
+steps:
+  - action: assertVisible
+    target:
+      testId: filter-list
+  - action: assertCount
+    target:
+      testId: filter-row
+    count: 4
+  - action: click
+    target:
+      testId: filter-beta
+  - action: assertCount
+    target:
+      css: '[data-testid="filter-row"][data-category="alpha"]'
+    count: 0
+  - action: assertCount
+    target:
+      testId: filter-row
+    count: 2
+  - action: assertCount
+    target:
+      css: '[data-testid="filter-row"][data-category="beta"]'
+    count: 2

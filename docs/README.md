@@ -16,6 +16,8 @@ This documentation is bilingual. Each page contains English first and Chinese se
 | [Local Security Scanning](SECURITY_SCANNING.md) | 本地安全扫描 | Optional local adapters, modes and coverage / 可选本地适配器、模式与覆盖 |
 | [Changelog](../CHANGELOG.md) | 更新记录 | Changes, verification and compatibility for every commit / 每次提交的变更、验证与兼容性 |
 | [Troubleshooting](TROUBLESHOOTING.md) | 故障排查 | Installation, launch, locator, MCP and CI problems / 安装、启动、定位、MCP和CI问题 |
+| [UI Testing Knowledge](knowledge/README.md) | UI测试经验 | Recall execution/evidence methods and maintain reviewed lessons / 检索操作与证据方法，持续维护已复核经验 |
+| [Script-first Testing](knowledge/HYBRID.md) | 脚本优先测试 | Runnable deterministic examples and bounded model assistance / 可运行确定性示例与有边界的模型协助 |
 
 ## Design and governance / 设计与治理
 

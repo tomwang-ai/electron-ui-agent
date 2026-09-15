@@ -19,9 +19,10 @@
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && node --test dist/*.test.js",
     "test:e2e": "npm run build && node scripts/e2e.mjs",
+    "test:deterministic": "npm run build && node scripts/deterministic-e2e.mjs",
     "test:mcp": "npm run build && node scripts/mcp-smoke.mjs",
     "check:hygiene": "node scripts/check-repository-hygiene.mjs",
-    "check": "npm run check:hygiene && npm test && npm run test:mcp && npm run test:e2e"
+    "check": "npm run check:hygiene && npm test && npm run test:mcp && npm run test:e2e && npm run test:deterministic"
   },
   "keywords": [
     "electron",

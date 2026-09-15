@@ -1,0 +1,64 @@
+name: committed items agree after cancel and reopen
+app:
+  executablePath: "${ENV:ELECTRON_EXECUTABLE}"
+  args:
+    - "${ENV:DETERMINISTIC_APP_ENTRY}"
+  timeoutMs: 5000
+  actionTimeoutMs: 1000
+steps:
+  - action: assertVisible
+    target:
+      role: heading
+      name: Committed items
+  - action: assertCount
+    target:
+      testId: outer-item
+    count: 0
+  - action: click
+    target:
+      testId: editor-open
+  - action: assertVisible
+    target:
+      testId: item-editor
+  - action: assertCount
+    target:
+      testId: inner-item
+    count: 0
+  - action: fill
+    target:
+      testId: item-input
+    value: Synthetic item Red
+  - action: click
+    target:
+      testId: item-commit
+  - action: assertVisible
+    target:
+      testId: inner-item
+  - action: assertCount
+    target:
+      testId: inner-item
+    count: 1
+  - action: click
+    target:
+      testId: editor-cancel
+  - action: click
+    target:
+      testId: editor-open
+  - action: assertVisible
+    target:
+      testId: inner-item
+  - action: assertCount
+    target:
+      testId: inner-item
+    count: 1
+  - action: click
+    target:
+      testId: editor-cancel
+  - action: assertVisible
+    target:
+      role: heading
+      name: Committed items
+  - action: assertCount
+    target:
+      testId: outer-item
+    count: 1

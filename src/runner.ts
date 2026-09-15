@@ -2,6 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { randomUUID } from 'node:crypto'
 import path from 'node:path'
 import { _electron, type ElectronApplication, type Locator, type Page } from 'playwright'
+import { assertEventually } from './assertions.js'
 import type { RunResult, Step, StepResult, Target, TestCase } from './types.js'
 
 function expand(value: string): string {
@@ -23,7 +24,7 @@ function safeName(value: string): string {
   return value.replace(/[^a-z0-9_-]+/gi, '-').replace(/^-|-$/g, '').slice(0, 80) || 'artifact'
 }
 
-async function executeStep(page: Page, step: Step, outputDir: string, index: number, artifacts: string[]): Promise<void> {
+async function executeStep(page: Page, step: Step, outputDir: string, index: number, artifacts: string[], timeoutMs: number): Promise<void> {
   switch (step.action) {
     case 'click':
       await locator(page, step.target).click()
@@ -46,10 +47,13 @@ async function executeStep(page: Page, step: Step, outputDir: string, index: num
       await locator(page, step.target).filter({ hasText: expand(step.value) }).waitFor({ state: 'visible' })
       break
     case 'assertValue': {
-      const value = await locator(page, step.target).inputValue()
-      if (value !== expand(step.value)) throw new Error(`Expected value ${JSON.stringify(expand(step.value))}, received ${JSON.stringify(value)}`)
+      const target = locator(page, step.target)
+      await assertEventually(remainingMs => target.inputValue({ timeout: remainingMs }), expand(step.value), timeoutMs, step.action)
       break
     }
+    case 'assertCount':
+      await assertEventually(() => locator(page, step.target).count(), step.count, timeoutMs, step.action)
+      break
     case 'screenshot': {
       const file = path.join(outputDir, `${String(index + 1).padStart(3, '0')}-${safeName(step.name ?? 'screenshot')}.png`)
       await page.screenshot({ path: file })
@@ -81,14 +85,15 @@ export async function runCase(testCase: TestCase, outputRoot = path.resolve('art
       timeout: testCase.app.timeoutMs ?? 30_000
     })
     page = await application.firstWindow()
-    page.setDefaultTimeout(testCase.app.actionTimeoutMs ?? 30_000)
+    const actionTimeoutMs = testCase.app.actionTimeoutMs ?? 30_000
+    page.setDefaultTimeout(actionTimeoutMs)
     page.on('console', message => consoleMessages.push(`[${message.type()}] ${message.text()}`))
     await page.context().tracing.start({ screenshots: true, snapshots: true })
 
     for (const [index, step] of testCase.steps.entries()) {
       const stepStarted = Date.now()
       try {
-        await executeStep(page, step, outputDir, index, artifacts)
+        await executeStep(page, step, outputDir, index, artifacts, actionTimeoutMs)
         steps.push({ index, action: step.action, status: 'passed', durationMs: Date.now() - stepStarted })
       } catch (cause) {
         error = cause instanceof Error ? cause.message : String(cause)

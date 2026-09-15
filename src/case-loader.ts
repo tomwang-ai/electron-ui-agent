@@ -42,10 +42,19 @@ function parseStep(value: unknown, index: number): Step {
       if (!target) throw new Error(`${action} requires target`)
       return { action, target }
     case 'fill':
-    case 'assertText':
     case 'assertValue':
       if (!target) throw new Error(`${action} requires target`)
+      if (typeof step.value !== 'string') throw new Error(`steps[${index}].value must be a string`)
+      return { action, target, value: step.value }
+    case 'assertText':
+      if (!target) throw new Error(`${action} requires target`)
       return { action, target, value: requireString(step.value, `steps[${index}].value`) }
+    case 'assertCount':
+      if (!target) throw new Error(`${action} requires target`)
+      if (!Number.isSafeInteger(step.count) || Number(step.count) < 0) {
+        throw new Error(`steps[${index}].count must be a non-negative safe integer`)
+      }
+      return { action, target, count: Number(step.count) }
     case 'press':
       return { action, key: requireString(step.key, `steps[${index}].key`), target }
     case 'wait': {

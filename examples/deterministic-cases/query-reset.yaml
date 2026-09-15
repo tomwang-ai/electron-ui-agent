@@ -1,0 +1,27 @@
+name: query reset clears the input
+app:
+  executablePath: "${ENV:ELECTRON_EXECUTABLE}"
+  args:
+    - "${ENV:DETERMINISTIC_APP_ENTRY}"
+  timeoutMs: 5000
+  actionTimeoutMs: 1000
+steps:
+  - action: assertValue
+    target:
+      testId: query-input
+    value: ""
+  - action: fill
+    target:
+      testId: query-input
+    value: synthetic query
+  - action: assertValue
+    target:
+      testId: query-input
+    value: synthetic query
+  - action: click
+    target:
+      testId: query-reset
+  - action: assertValue
+    target:
+      testId: query-input
+    value: ""

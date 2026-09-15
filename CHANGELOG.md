@@ -4,6 +4,24 @@ Every commit adds an entry with changes, verification and compatibility impact. 
 
 每次提交新增一条记录，包含变更内容、验证情况和兼容性影响。保留历史记录，所有内容必须通用且不可识别。
 
+## Unreleased — Deterministic UI regression recipes / 确定性 UI 回归配方
+
+### English
+
+- Added exact count assertions and deadline-bound polling for exact input values.
+- Added three synthetic Electron workflows for query reset, category filtering, and editor/list consistency; each verifies its own injected fault.
+- Added script-first UI testing guidance and a generic, bilingual knowledge index for bounded model assistance.
+- Verification: `npm run check` passed, including hygiene, unit, MCP, Electron E2E, and synthetic deterministic workflow checks.
+- Compatibility: existing case actions keep their behavior; `assertCount` is additive, and `assertValue` now waits up to the configured action timeout.
+
+### 中文
+
+- 新增精确数量断言，并为输入值精确断言增加受截止时间约束的轮询。
+- 新增三个虚构 Electron 流程：查询重置、类别筛选和编辑器/列表一致性；每个流程都会验证对应的故障注入。
+- 新增脚本优先的 UI 测试指引，以及支持受限模型协助的通用双语经验索引。
+- 验证：`npm run check` 已通过，包含卫生扫描、单元测试、MCP、Electron 端到端和虚构确定性流程检查。
+- 兼容性：既有用例动作保持原有行为；`assertCount` 为新增动作，`assertValue` 现在会在配置的动作超时内等待。
+
 ## Unreleased — Adapter output handles / 适配器输出句柄
 
 ### English
