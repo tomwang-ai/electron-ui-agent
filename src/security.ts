@@ -23,8 +23,11 @@ async function execute(executable: string, args: string[], cwd: string, timeoutM
   return await new Promise<{ exitCode: number | null; reason?: string }>(resolve => {
     const child = spawn(executable, args, {
       cwd, shell: false, windowsHide: true, detached: process.platform !== 'win32',
-      stdio: 'ignore', env: { ...scannerEnvironment(), SEMGREP_SEND_METRICS: 'off' }
+      stdio: ['ignore', 'pipe', 'pipe'], env: { ...scannerEnvironment(), SEMGREP_SEND_METRICS: 'off' }
     })
+    // Drain without storing: Windows console hosts need usable output handles.
+    child.stdout.resume()
+    child.stderr.resume()
     let timedOut = false
     const timer = setTimeout(() => {
       timedOut = true

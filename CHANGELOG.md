@@ -4,6 +4,20 @@ Every commit adds an entry with changes, verification and compatibility impact. 
 
 每次提交新增一条记录，包含变更内容、验证情况和兼容性影响。保留历史记录，所有内容必须通用且不可识别。
 
+## Unreleased — Adapter output handles / 适配器输出句柄
+
+### English
+
+- Use drained pipes for adapter stdout/stderr so Windows console runtimes receive usable output handles. Output remains discarded and never enters reports or MCP responses.
+- Verification: synthetic subprocess and Windows PowerShell adapter tests, full `npm run check`, and Windows/Linux CI.
+- Compatibility: no configuration, CLI, report or timeout changes; no additional output retention.
+
+### 中文
+
+- 适配器标准输出和错误输出改为持续排空的管道，为 Windows 控制台运行时提供可用句柄；内容仍丢弃，不进入报告或 MCP 响应。
+- 验证：虚构子进程及 Windows PowerShell 适配器测试、完整 `npm run check` 和 Windows/Linux CI。
+- 兼容性：配置、CLI、报告及超时规则不变，不增加输出留存。
+
 ## Unreleased — Optional local security adapters / 可选本地安全扫描适配器
 
 ### English
